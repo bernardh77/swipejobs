@@ -1,0 +1,297 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 0;
+}
+
+.summaryCard {
+  background: #ffffff;
+  border: 1px solid #e2d4c6;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 18px 30px rgba(37, 30, 24, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.summaryHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summaryPay {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2a241f;
+}
+
+.summaryMeta {
+  display: grid;
+  gap: 10px;
+}
+
+.summaryLabel {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #8a7b6a;
+}
+
+.summaryValue {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3a2f26;
+}
+
+.outBadge {
+  align-self: flex-start;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f9e5e3;
+  border: 1px solid #f0c7c3;
+  color: #b0392e;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.helperText {
+  margin: 0;
+  font-size: 12px;
+  color: #7a6a5c;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.acceptButton {
+  background: #1f1a16;
+  color: #fef6ee;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rejectButton {
+  background: transparent;
+  border: 1px solid #d1c3b6;
+  color: #5d4a3d;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 0;
+}
+
+.mainColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.2;
+  font-weight: 600;
+  color: #2a241f;
+}
+
+.company {
+  margin: 0;
+  color: #5c5046;
+  font-size: 16px;
+}
+
+.addressLine {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #4f443c;
+  font-size: 14px;
+}
+
+.addressText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metaLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #8a7b6a;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.metaValue {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3a2f26;
+}
+
+.metaSub {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: #6b5c50;
+}
+
+.sectionCard {
+  background: #ffffff;
+  border: 1px solid #e6d7c9;
+  border-radius: 16px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 12px 24px rgba(36, 28, 21, 0.06);
+}
+
+.sectionCard h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2f261f;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.shiftToggle {
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  color: #3b2f25;
+  cursor: pointer;
+  padding: 0;
+}
+
+.shiftList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.shiftListExpanded {
+  max-height: 360px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  padding-right: 4px;
+}
+
+.shiftItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #efe7de;
+  font-size: 14px;
+  color: #3f352f;
+}
+
+.shiftItem:last-child {
+  border-bottom: none;
+}
+
+.shiftDate {
+  font-weight: 600;
+}
+
+.shiftTime {
+  font-variant-numeric: tabular-nums;
+  color: #5c5046;
+}
+
+.scheduleCard {
+  border-color: #efe4d8;
+  box-shadow: 0 10px 22px rgba(36, 28, 21, 0.04);
+}
+
+.detailsGrid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.requirementsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.requirementsChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.requirementChip {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #e5d8cc;
+  background: #fbf6ef;
+  font-size: 12px;
+  font-weight: 600;
+  color: #3b2f25;
+}
+
+.muted {
+  color: #6b5c50;
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .content {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .mainColumn {
+    flex: 1;
+  }
+
+  .summaryColumn {
+    width: min(320px, 30vw);
+    position: sticky;
+    top: 16px;
+  }
+}
+
+@media (max-width: 720px) {
+  .title {
+    font-size: 26px;
+  }
+}

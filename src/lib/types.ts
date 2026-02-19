@@ -17,6 +17,13 @@ export type Job = {
   location?: string;
   distanceMiles?: number;
   startDate?: string;
+  address?: string;
+  branch?: string;
+  branchPhoneNumber?: string;
+  reportTo?: {
+    name?: string;
+    phone?: string;
+  };
   requirements?: string[];
   shiftCount?: number;
   shifts?: Array<{

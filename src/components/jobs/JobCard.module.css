@@ -8,6 +8,7 @@
   border: 1px solid #d9cabb;
   box-shadow: 0 16px 36px rgba(60, 45, 30, 0.12);
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
 }
 
 .cardInteractive {
@@ -15,8 +16,14 @@
 }
 
 .cardInteractive:hover {
-  border-color: #c6b3a1;
-  box-shadow: 0 18px 45px rgba(60, 45, 30, 0.16);
+  border-color: #d4c3b3;
+  box-shadow: 0 14px 32px rgba(60, 45, 30, 0.12);
+}
+
+.selected {
+  border-color: #d2bfae;
+  background: #fffaf5;
+  box-shadow: 0 16px 36px rgba(60, 45, 30, 0.14);
 }
 
 .mark {
@@ -138,21 +145,23 @@
 }
 
 .actions button {
-  border: none;
+  border: 1px solid #d7c7b8;
   border-radius: 999px;
-  padding: 8px 0;
+  padding: 6px 0;
   font-weight: 600;
+  font-size: 12px;
   cursor: pointer;
+  background: #fbf7f0;
+  color: #4b4036;
 }
 
 .acceptButton {
-  background: #1f1a16;
-  color: #fef6ee;
+  background: #f6ede3;
+  border-color: #d6c4b3;
 }
 
 .rejectButton {
   background: transparent;
-  border: 1px solid #d1c3b6;
   color: #5d4a3d;
 }
 
@@ -164,6 +173,54 @@
 .inlineSpinner {
   font-size: 12px;
   letter-spacing: 0.04em;
+}
+
+.list {
+  padding: 12px 14px;
+  gap: 12px;
+}
+
+.list .mark {
+  transform: scale(0.92);
+}
+
+.list .main {
+  gap: 6px;
+}
+
+.list .title {
+  font-size: 16px;
+}
+
+.list .companyLine {
+  font-size: 12px;
+}
+
+.list .metaLine {
+  font-size: 11px;
+}
+
+.list .chip {
+  padding: 4px 6px;
+  font-size: 10px;
+}
+
+.list .chipValue {
+  font-size: 12px;
+}
+
+.list .side {
+  min-width: 150px;
+  gap: 8px;
+}
+
+.list .payValue {
+  font-size: 14px;
+}
+
+.list .actions button {
+  padding: 4px 0;
+  font-size: 11px;
 }
 
 @media (max-width: 900px) {

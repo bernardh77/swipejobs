@@ -148,52 +148,70 @@ export async function fetchJobs(
   const start = (page - 1) * limit;
   const pageItems = data.slice(start, start + limit);
 
-  const jobs: Job[] = pageItems.map((match, index) => {
-    const jobId = match.jobId ?? `job-${start + index + 1}`;
-    const title = match.jobTitle?.name ?? "Open role";
-    const company = match.company?.name ?? "SwipeJobs Partner";
-    const industry =
-      match.branch ?? match.company?.address?.formattedAddress ?? "General";
-    const payCents = match.wagePerHourInCents ?? 0;
-    const pay = Number.isFinite(payCents) ? payCents / 100 : 0;
-    const shiftStart = match.shifts?.[0]?.startDate ?? null;
-    const location = match.company?.address?.formattedAddress ?? undefined;
-    const timeZone = match.company?.address?.zoneId ?? undefined;
-    const descriptionParts = [
-      match.milesToTravel ? `${match.milesToTravel} miles away` : null,
-      match.requirements?.length ? `Requirements: ${match.requirements.join(", ")}` : null,
-      shiftStart ? `Start: ${formatDate(shiftStart)}` : null,
-    ].filter(Boolean);
-    const description =
-      descriptionParts.join(" ") || "Details available upon request.";
-    const matchScore = buildMatchScore(jobId);
-    const imageUrl =
-      match.jobTitle?.imageUrl ?? buildPlaceholderImage(title);
-
-    return {
-      id: jobId,
-      title,
-      company,
-      industry,
-      description,
-      pay,
-      matchScore,
-      imageUrl,
-      location,
-      distanceMiles: match.milesToTravel,
-      startDate: shiftStart ? formatDate(shiftStart) : undefined,
-      requirements: match.requirements,
-      shiftCount: match.shifts?.length,
-      shifts: match.shifts,
-      timeZone,
-    };
-  });
+  const jobs: Job[] = pageItems.map((match, index) =>
+    mapMatchToJob(match, index, start)
+  );
 
   return {
     jobs,
     total,
     page,
     totalPages,
+  };
+}
+
+export function mapMatchToJob(
+  match: MatchResponse,
+  index = 0,
+  start = 0
+): Job {
+  const jobId = match.jobId ?? `job-${start + index + 1}`;
+  const title = match.jobTitle?.name ?? "Open role";
+  const company = match.company?.name ?? "SwipeJobs Partner";
+  const industry =
+    match.branch ?? match.company?.address?.formattedAddress ?? "General";
+  const payCents = match.wagePerHourInCents ?? 0;
+  const pay = Number.isFinite(payCents) ? payCents / 100 : 0;
+  const shiftStart = match.shifts?.[0]?.startDate ?? null;
+  const location = match.company?.address?.formattedAddress ?? undefined;
+  const timeZone = match.company?.address?.zoneId ?? undefined;
+  const descriptionParts = [
+    match.milesToTravel ? `${match.milesToTravel} miles away` : null,
+    match.requirements?.length
+      ? `Requirements: ${match.requirements.join(", ")}`
+      : null,
+    shiftStart ? `Start: ${formatDate(shiftStart)}` : null,
+  ].filter(Boolean);
+  const description =
+    descriptionParts.join(" ") || "Details available upon request.";
+  const matchScore = buildMatchScore(jobId);
+  const imageUrl = match.jobTitle?.imageUrl ?? buildPlaceholderImage(title);
+
+  return {
+    id: jobId,
+    title,
+    company,
+    industry,
+    description,
+    pay,
+    matchScore,
+    imageUrl,
+    location,
+    distanceMiles: match.milesToTravel,
+    startDate: shiftStart ? formatDate(shiftStart) : undefined,
+    address: match.company?.address?.formattedAddress ?? undefined,
+    branch: match.branch ?? undefined,
+    branchPhoneNumber: match.branchPhoneNumber ?? undefined,
+    reportTo: match.company?.reportTo
+      ? {
+          name: match.company?.reportTo?.name,
+          phone: match.company?.reportTo?.phone,
+        }
+      : undefined,
+    requirements: match.requirements,
+    shiftCount: match.shifts?.length,
+    shifts: match.shifts,
+    timeZone,
   };
 }
 

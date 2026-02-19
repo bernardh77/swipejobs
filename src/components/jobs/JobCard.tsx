@@ -7,6 +7,8 @@ type JobCardProps = {
   job: Job;
   isSubmitting: boolean;
   isPreview: boolean;
+  isSelected?: boolean;
+  variant?: "list" | "detail";
   onAccept: () => void;
   onReject: () => void;
   onOpen?: () => void;
@@ -16,6 +18,8 @@ export default function JobCard({
   job,
   isSubmitting,
   isPreview,
+  isSelected = false,
+  variant = "detail",
   onAccept,
   onReject,
   onOpen,
@@ -35,10 +39,15 @@ export default function JobCard({
     }
   };
 
+  const showCompactChips = variant === "list";
+
   return (
     <article
-      className={`${styles.card} ${onOpen ? styles.cardInteractive : ""}`}
+      className={`${styles.card} ${styles[variant]} ${
+        onOpen ? styles.cardInteractive : ""
+      } ${isSelected ? styles.selected : ""}`}
       aria-live="polite"
+      aria-selected={isSelected}
       role={onOpen ? "button" : undefined}
       tabIndex={onOpen ? 0 : undefined}
       onClick={onOpen}
@@ -57,18 +66,33 @@ export default function JobCard({
           {job.location ? ` · ${job.location}` : ""}
         </p>
         <div className={styles.chips}>
-          <span className={styles.chip}>
-            <span className={styles.chipLabel}>Match</span>
-            <span className={styles.chipValue}>{job.matchScore.toFixed(1)}</span>
-          </span>
-          <span className={styles.chip}>
-            <span className={styles.chipLabel}>Distance</span>
-            <span className={styles.chipValue}>{distanceLabel}</span>
-          </span>
-          <span className={styles.chip}>
-            <span className={styles.chipLabel}>Start</span>
-            <span className={styles.chipValue}>{startLabel}</span>
-          </span>
+          {showCompactChips ? (
+            <>
+              <span className={styles.chip}>
+                <span className={styles.chipLabel}>Pay</span>
+                <span className={styles.chipValue}>{payLabel}</span>
+              </span>
+              <span className={styles.chip}>
+                <span className={styles.chipLabel}>Distance</span>
+                <span className={styles.chipValue}>{distanceLabel}</span>
+              </span>
+            </>
+          ) : (
+            <>
+              <span className={styles.chip}>
+                <span className={styles.chipLabel}>Match</span>
+                <span className={styles.chipValue}>{job.matchScore.toFixed(1)}</span>
+              </span>
+              <span className={styles.chip}>
+                <span className={styles.chipLabel}>Distance</span>
+                <span className={styles.chipValue}>{distanceLabel}</span>
+              </span>
+              <span className={styles.chip}>
+                <span className={styles.chipLabel}>Start</span>
+                <span className={styles.chipValue}>{startLabel}</span>
+              </span>
+            </>
+          )}
         </div>
       </div>
       <div className={styles.side}>

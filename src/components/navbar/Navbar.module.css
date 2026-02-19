@@ -79,6 +79,13 @@
   font-size: 13px;
 }
 
+.address {
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .closeButton {
   margin-top: 8px;
   border: none;
