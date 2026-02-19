@@ -6,10 +6,10 @@
   align-items: center;
   gap: 16px;
   padding: 12px 16px;
-  background: #1f1a16;
-  color: #fef6ee;
+  background: var(--text);
+  color: var(--surface);
   border-radius: 14px;
-  box-shadow: 0 20px 45px rgba(30, 22, 18, 0.2);
+  box-shadow: var(--shadow);
   font-size: 14px;
   z-index: 50;
 }
@@ -22,8 +22,8 @@
 
 .actionButton {
   border: none;
-  background: #fef6ee;
-  color: #1f1a16;
+  background: var(--surface);
+  color: var(--text);
   padding: 6px 12px;
   border-radius: 999px;
   font-weight: 600;

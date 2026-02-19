@@ -15,36 +15,27 @@ export default function Pagination({
   pageSize,
   onPageChange,
 }: PaginationProps) {
-  if (totalPages <= 1) {
-    return null;
-  }
-
-  const onPrev = () => onPageChange(Math.max(1, page - 1));
-  const onNext = () => onPageChange(Math.min(totalPages, page + 1));
-  const start = (page - 1) * pageSize + 1;
-  const end = Math.min(totalItems, page * pageSize);
+  const visiblePages = Math.min(3, totalPages);
+  const pages = Array.from({ length: visiblePages }, (_, index) => index + 1);
 
   return (
     <div className={styles.pagination}>
-      <button
-        className={styles.button}
-        onClick={onPrev}
-        disabled={page <= 1}
-        aria-label="Previous page"
-      >
-        Prev
-      </button>
-      <span className={styles.pageIndicator}>
-        Showing {start}–{end} of {totalItems}
-      </span>
-      <button
-        className={styles.button}
-        onClick={onNext}
-        disabled={page >= totalPages}
-        aria-label="Next page"
-      >
-        Next
-      </button>
+      <div className={styles.pageList} role="list">
+        {pages.map((pageNumber) => (
+          <button
+            key={pageNumber}
+            type="button"
+            role="listitem"
+            className={`${styles.pagePill} ${
+              pageNumber === page ? styles.pagePillActive : ""
+            }`}
+            onClick={() => onPageChange(pageNumber)}
+            aria-current={pageNumber === page ? "page" : undefined}
+          >
+            {pageNumber}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

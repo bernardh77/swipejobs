@@ -4,9 +4,9 @@
   gap: 16px;
   padding: 16px;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid #d9cabb;
-  box-shadow: 0 16px 36px rgba(60, 45, 30, 0.12);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
   position: relative;
 }
@@ -16,14 +16,14 @@
 }
 
 .cardInteractive:hover {
-  border-color: #d4c3b3;
-  box-shadow: 0 14px 32px rgba(60, 45, 30, 0.12);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-soft);
 }
 
 .selected {
-  border-color: #d2bfae;
-  background: #fffaf5;
-  box-shadow: 0 16px 36px rgba(60, 45, 30, 0.14);
+  border-color: var(--accent);
+  background: var(--accent-weak);
+  box-shadow: var(--shadow);
 }
 
 .mark {
@@ -49,12 +49,12 @@
   margin: 0;
   font-size: 18px;
   font-weight: 600;
-  color: #2a241f;
+  color: var(--text);
 }
 
 .matchScore {
-  background: #efe2d4;
-  color: #3b2f25;
+  background: var(--surface-2);
+  color: var(--text);
   padding: 6px 12px;
   border-radius: 999px;
   font-size: 12px;
@@ -64,7 +64,7 @@
 
 .companyLine {
   margin: 0;
-  color: #3d342d;
+  color: var(--muted);
   font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
@@ -74,7 +74,7 @@
 
 .metaLine {
   margin: 0;
-  color: #5c5046;
+  color: var(--muted);
   font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
@@ -93,22 +93,22 @@
   align-items: baseline;
   padding: 5px 8px;
   border-radius: 999px;
-  background: #fbf6ef;
-  border: 1px solid #e5d8cc;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   font-size: 11px;
 }
 
 .chipLabel {
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #8a7b6a;
+  color: var(--muted);
   font-weight: 600;
 }
 
 .chipValue {
   font-size: 14px;
   font-weight: 600;
-  color: #2f2721;
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 
@@ -128,14 +128,14 @@
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #8a7b6a;
+  color: var(--muted);
 }
 
 .payValue {
   display: block;
   font-size: 16px;
   font-weight: 700;
-  color: #2a241f;
+  color: var(--text);
 }
 
 .actions {
@@ -145,24 +145,25 @@
 }
 
 .actions button {
-  border: 1px solid #d7c7b8;
+  border: 1px solid var(--border-strong);
   border-radius: 999px;
   padding: 6px 0;
   font-weight: 600;
   font-size: 12px;
   cursor: pointer;
-  background: #fbf7f0;
-  color: #4b4036;
+  background: var(--surface);
+  color: var(--text);
 }
 
 .acceptButton {
-  background: #f6ede3;
-  border-color: #d6c4b3;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--surface);
 }
 
 .rejectButton {
   background: transparent;
-  color: #5d4a3d;
+  color: var(--muted);
 }
 
 .actions button:disabled {
@@ -177,23 +178,25 @@
 
 .row {
   padding: 12px 14px;
-  border-radius: 0;
-  border: none;
+  border-radius: 12px;
+  border: 1px solid transparent;
   box-shadow: none;
-  background: transparent;
+  background: var(--surface);
 }
 
 .row:hover {
-  background: #fff8f1;
+  background: var(--surface);
 }
 
 .row.selected {
-  background: #fff6ee;
-  box-shadow: inset 2px 0 0 #d4c3b3;
+  background: var(--surface-2);
+  border-color: var(--border-strong);
+  box-shadow: inset 2px 0 0 var(--border-strong);
 }
 
 .row + .row {
-  border-top: 1px solid #efe7de;
+  margin-top: 0;
+  border-top: 1px solid var(--border);
 }
 
 .noActions .side {
@@ -265,7 +268,8 @@
 
 @media (max-width: 600px) {
   .card {
-    grid-template-columns: 1fr;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
   }
 
   .header {

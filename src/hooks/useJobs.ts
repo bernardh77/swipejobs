@@ -3,6 +3,7 @@ import { fetchJobs, getErrorMessage } from "@/lib/api";
 import type { JobsResult, JobDecision } from "@/lib/types";
 
 export function useJobs(maxDistance?: number) {
+  const pageSize = 25;
   const [data, setData] = useState<JobsResult | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -15,7 +16,7 @@ export function useJobs(maxDistance?: number) {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetchJobs(page, 10);
+      const response = await fetchJobs(page, pageSize);
       if (typeof maxDistance === "number") {
         const filteredJobs = response.jobs.filter((job) => {
           if (typeof job.distanceMiles !== "number") {
@@ -24,7 +25,7 @@ export function useJobs(maxDistance?: number) {
           return job.distanceMiles <= maxDistance;
         });
         const total = filteredJobs.length;
-        const totalPages = Math.max(1, Math.ceil(total / 10));
+        const totalPages = Math.max(1, Math.ceil(total / pageSize));
         setData({
           ...response,
           jobs: filteredJobs,
@@ -39,7 +40,7 @@ export function useJobs(maxDistance?: number) {
     } finally {
       setIsLoading(false);
     }
-  }, [page, maxDistance]);
+  }, [page, maxDistance, pageSize]);
 
   useEffect(() => {
     let isMounted = true;

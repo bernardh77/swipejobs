@@ -6,24 +6,25 @@
   gap: 16px;
 }
 
-.button {
-  border: 1px solid #2a241f;
-  background: transparent;
-  color: #2a241f;
-  padding: 8px 18px;
+.pageList {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pagePill {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
   border-radius: 999px;
+  border: 1px solid var(--text);
+  background: transparent;
+  color: var(--text);
   font-weight: 600;
   cursor: pointer;
 }
 
-.button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.pageIndicator {
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #5d5247;
+.pagePillActive {
+  background: var(--text);
+  color: var(--surface);
 }

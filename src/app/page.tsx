@@ -31,7 +31,7 @@ function useMediaQuery(query: string) {
 export default function Home() {
   const router = useRouter();
   const isDesktop = useMediaQuery(DESKTOP_QUERY);
-  const pageSize = 10;
+  const pageSize = 25;
   const undoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [undoJob, setUndoJob] = useState<{ job: Job; index: number } | null>(
@@ -189,18 +189,17 @@ export default function Home() {
   return (
     <main className={styles.page}>
       <div className={styles.container}>
-        <header className={styles.hero}>
-          <div>
-            <h1 className={styles.title}>Your latest job matches</h1>
-            <p className={styles.subtitle}>
-              Review your profile and decide which opportunities move forward.
-            </p>
-          </div>
-        </header>
-
         <div className={`${styles.body} ${isDesktop ? styles.splitView : ""}`}>
           <div className={styles.leftPane}>
             <section className={styles.feed}>
+              <header className={styles.hero}>
+                <div>
+                  <h1 className={styles.title}>Your latest job matches</h1>
+                  <p className={styles.subtitle}>
+                    Review your profile and decide which opportunities move forward.
+                  </p>
+                </div>
+              </header>
               <div className={styles.sectionHeader}>
                 <h2 className={styles.sectionTitle}>Matched Jobs</h2>
                 {jobsData?.total ? (
@@ -222,54 +221,59 @@ export default function Home() {
                     </button>
                   </div>
                 ) : null}
-
-                <div className={styles.cards}>
-                  {jobsLoading
-                    ? Array.from({ length: 3 }).map((_, index) => (
-                        <div
-                          key={index}
-                          className={`${styles.cardSkeleton} skeleton`}
-                        />
-                      ))
-                    : visibleJobs.map((job) => {
-                        const isSubmitting = submitting[job.id] ?? false;
-
-                        return (
-                          <JobCard
-                            key={job.id}
-                            job={job}
-                            isSubmitting={isSubmitting}
-                            isPreview={false}
-                            isSelected={isDesktop && selectedJobId === job.id}
-                            variant="row"
-                            showActions={!isDesktop}
-                            onAccept={() => handleDecision(job, "accepted")}
-                            onReject={() => handleDecision(job, "rejected")}
-                            onOpen={() => handleRowOpen(job.id)}
+                <div className={styles.listPanel}>
+                  <div className={styles.cards}>
+                    {jobsLoading
+                      ? Array.from({ length: 3 }).map((_, index) => (
+                          <div
+                            key={index}
+                            className={`${styles.cardSkeleton} skeleton`}
                           />
-                        );
-                      })}
-                </div>
+                        ))
+                      : visibleJobs.map((job) => {
+                          const isSubmitting = submitting[job.id] ?? false;
 
-                {!jobsLoading && visibleJobs.length === 0 && !jobsError ? (
-                  <div className={styles.emptyState}>
-                    <h3>No matches yet</h3>
-                    <p>Check back soon for fresh opportunities.</p>
+                          return (
+                            <JobCard
+                              key={job.id}
+                              job={job}
+                              isSubmitting={isSubmitting}
+                              isPreview={false}
+                              isSelected={isDesktop && selectedJobId === job.id}
+                              variant="row"
+                              showActions={!isDesktop}
+                              onAccept={() => handleDecision(job, "accepted")}
+                              onReject={() => handleDecision(job, "rejected")}
+                              onOpen={() => handleRowOpen(job.id)}
+                            />
+                          );
+                        })}
                   </div>
-                ) : null}
 
-                {jobsData ? (
-                  <Pagination
-                    page={page}
-                    totalPages={totalPages}
-                    totalItems={jobsData.total}
-                    pageSize={pageSize}
-                    onPageChange={setPage}
-                  />
-                ) : null}
+                  {!jobsLoading && visibleJobs.length === 0 && !jobsError ? (
+                    <div className={styles.emptyState}>
+                      <h3>No matches yet</h3>
+                      <p>Check back soon for fresh opportunities.</p>
+                    </div>
+                  ) : null}
+
+                  {jobsData ? (
+                    <Pagination
+                      page={page}
+                      totalPages={totalPages}
+                      totalItems={jobsData.total}
+                      pageSize={pageSize}
+                      onPageChange={setPage}
+                    />
+                  ) : null}
+                </div>
               </div>
             </section>
           </div>
+
+          {isDesktop ? (
+            <div className={styles.divider} aria-hidden="true" />
+          ) : null}
 
           {isDesktop ? (
             <aside className={styles.detailPane}>

@@ -1,5 +1,6 @@
 .page {
-  min-height: calc(100vh - 66px);
+  min-height: calc(100vh - 57px);
+  /* background: red; */
   display: flex;
   flex-direction: column;
 }
@@ -18,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 0;
+  /* padding: 20px 0; */
 }
 
 .eyebrow {
@@ -26,7 +27,7 @@
   letter-spacing: 0.16em;
   font-size: 12px;
   font-weight: 600;
-  color: #7a6b5f;
+  color: var(--muted);
 }
 
 .title {
@@ -40,7 +41,7 @@
 
 .subtitle {
   max-width: 540px;
-  color: #4f463f;
+  color: var(--muted);
   font-size: 16px;
   line-height: 1.6;
 }
@@ -55,6 +56,11 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  flex: 1;
+  background: var(--surface);
+  /* border-radius: 16px; */
+  padding: 16px;
+  /* padding-bottom: 0; */
 }
 
 .leftPane {
@@ -87,8 +93,8 @@
 }
 
 .countBadge {
-  background: #1f1a16;
-  color: #fef6ee;
+  background: var(--text);
+  color: var(--surface);
   padding: 6px 12px;
   border-radius: 999px;
   font-size: 12px;
@@ -100,6 +106,16 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+}
+
+.listPanel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .cards {
@@ -120,8 +136,8 @@
   gap: 16px;
   padding: 18px 20px;
   border-radius: 16px;
-  background: #fff6f0;
-  border: 1px solid #f2d5c5;
+  background: var(--surface);
+  border: 1px solid var(--border);
 }
 
 .errorCard h3 {
@@ -131,13 +147,13 @@
 
 .errorCard p {
   margin: 0;
-  color: #6b5042;
+  color: var(--muted);
 }
 
 .retryButton {
   border: none;
-  background: #1b1b1b;
-  color: #fdf7ee;
+  background: var(--accent);
+  color: var(--surface);
   padding: 10px 16px;
   border-radius: 999px;
   font-weight: 600;
@@ -148,8 +164,8 @@
   text-align: center;
   padding: 28px 18px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px dashed #cbbfb2;
+  background: var(--surface);
+  border: 1px dashed var(--border);
 }
 
 .emptyState h3 {
@@ -159,18 +175,26 @@
 
 .emptyState p {
   margin: 0;
-  color: #6b625a;
+  color: var(--muted);
 }
 
 .detailPane {
   min-height: 0;
 }
 
+.divider {
+  display: none;
+  width: 1px;
+  background: var(--border);
+  border-radius: 0;
+  align-self: stretch;
+}
+
 .detailEmpty {
   border-radius: 16px;
-  border: 1px dashed #d4c6b8;
+  border: 1px dashed var(--border);
   padding: 24px;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--surface);
 }
 
 .detailEmpty h3 {
@@ -180,7 +204,7 @@
 
 .detailEmpty p {
   margin: 0;
-  color: #6b625a;
+  color: var(--muted);
 }
 
 .detailSkeleton {
@@ -191,14 +215,15 @@
 @media (min-width: 1024px) {
   .body {
     display: grid;
-    grid-template-columns: minmax(360px, 440px) minmax(0, 1fr);
-    gap: 24px;
+    grid-template-columns: minmax(360px, 440px) 1px minmax(0, 1fr);
+    gap: 16px;
     flex: 1;
     min-height: 0;
+    align-items: start;
   }
 
   .splitView {
-    align-items: stretch;
+    align-items: start;
   }
 
   .leftPane {
@@ -217,13 +242,22 @@
   }
 
   .detailPane {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
     overflow-y: auto;
-    padding-right: 8px;
+    align-self: start;
+  }
+
+  .divider {
+    display: block;
   }
 }
 
 @media (max-width: 720px) {
   .page {
+    padding-top: 20px;
     padding-bottom: 32px;
   }
 

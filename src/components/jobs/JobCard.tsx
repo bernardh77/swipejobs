@@ -68,19 +68,19 @@ export default function JobCard({
         <p className={styles.companyLine}>{job.company}</p>
         <p className={styles.metaLine}>
           {job.industry}
-          {job.location ? ` · ${job.location}` : ""}
+          {/* {job.location ? ` · ${job.location}` : ""} */}
         </p>
         <div className={styles.chips}>
           {showCompactChips ? (
             <>
-              <span className={styles.chip}>
+              {/* <span className={styles.chip}>
                 <span className={styles.chipLabel}>Pay</span>
                 <span className={styles.chipValue}>{payLabel}</span>
               </span>
               <span className={styles.chip}>
                 <span className={styles.chipLabel}>Distance</span>
                 <span className={styles.chipValue}>{distanceLabel}</span>
-              </span>
+              </span> */}
             </>
           ) : (
             <>
