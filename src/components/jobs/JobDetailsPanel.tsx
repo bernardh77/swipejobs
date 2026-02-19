@@ -1,11 +1,12 @@
 import { useMemo, useState } from "react";
-import type { Job } from "@/lib/types";
+import type { Job, JobDecision } from "@/lib/types";
 import styles from "./JobDetailsPanel.module.css";
 
 type JobDetailsPanelProps = {
   job: Job;
   maxDistance?: number;
   isSubmitting?: boolean;
+  pendingDecision?: JobDecision | null;
   onAccept?: () => void;
   onReject?: () => void;
   showActions?: boolean;
@@ -15,6 +16,7 @@ export default function JobDetailsPanel({
   job,
   maxDistance,
   isSubmitting = false,
+  pendingDecision = null,
   onAccept,
   onReject,
   showActions = true,
@@ -63,6 +65,8 @@ export default function JobDetailsPanel({
     shifts.length === 0
       ? "No shifts"
       : `${shiftSummary.countLabel} · ${shiftSummary.rangeLabel}`;
+
+  const isPending = Boolean(pendingDecision);
 
   return (
     <section className={styles.panel}>
@@ -161,21 +165,33 @@ export default function JobDetailsPanel({
             <button
               className={styles.acceptButton}
               onClick={onAccept}
-              disabled={isSubmitting}
+              disabled={isSubmitting || isPending}
               aria-label={`Accept ${job.title}`}
             >
-              {isSubmitting ? "Submitting..." : "Accept"}
+              {isSubmitting
+                ? "Submitting..."
+                : isPending
+                  ? "Pending..."
+                  : "Accept"}
             </button>
             <button
               className={styles.rejectButton}
               onClick={onReject}
-              disabled={isSubmitting}
+              disabled={isSubmitting || isPending}
               aria-label={`Not interested in ${job.title}`}
             >
-              {isSubmitting ? "Submitting..." : "Not interested"}
+              {isSubmitting
+                ? "Submitting..."
+                : isPending
+                  ? "Pending..."
+                  : "Not interested"}
             </button>
           </div>
-          <p className={styles.helperText}>Review the schedule before deciding.</p>
+          <p className={styles.helperText}>
+            {isPending
+              ? "Decision pending. Undo from the toast if needed."
+              : "Review the schedule before deciding."}
+          </p>
         </div>
       ) : null}
     </section>

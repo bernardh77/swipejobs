@@ -1,14 +1,22 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import Pagination from "@/components/jobs/Pagination";
+import Pagination, { getVisiblePages } from "@/components/jobs/Pagination";
 
 describe("Pagination", () => {
+  it("calculates the visible page window", () => {
+    expect(getVisiblePages(1, 10)).toEqual([1, 2, 3]);
+    expect(getVisiblePages(2, 10)).toEqual([1, 2, 3]);
+    expect(getVisiblePages(3, 10)).toEqual([2, 3, 4]);
+    expect(getVisiblePages(9, 10)).toEqual([8, 9, 10]);
+    expect(getVisiblePages(10, 10)).toEqual([8, 9, 10]);
+    expect(getVisiblePages(1, 2)).toEqual([1, 2]);
+    expect(getVisiblePages(1, 3)).toEqual([1, 2, 3]);
+  });
+
   it("disables prev on the first page and next on the last page", () => {
     const { rerender } = render(
       <Pagination
-        page={1}
+        currentPage={1}
         totalPages={3}
-        totalItems={30}
-        pageSize={10}
         onPageChange={() => {}}
       />
     );
@@ -17,10 +25,8 @@ describe("Pagination", () => {
 
     rerender(
       <Pagination
-        page={3}
+        currentPage={3}
         totalPages={3}
-        totalItems={30}
-        pageSize={10}
         onPageChange={() => {}}
       />
     );
@@ -31,10 +37,8 @@ describe("Pagination", () => {
     const onPageChange = jest.fn();
     render(
       <Pagination
-        page={2}
+        currentPage={2}
         totalPages={3}
-        totalItems={30}
-        pageSize={10}
         onPageChange={onPageChange}
       />
     );

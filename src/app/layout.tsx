@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/navbar/Navbar";
+import { ToastProvider } from "@/components/jobs/ToastProvider";
+import QueryProvider from "@/components/providers/QueryProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,8 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        <div className="appScroll">{children}</div>
+        <QueryProvider>
+          <ToastProvider>
+            <Navbar />
+            <div className="appScroll">{children}</div>
+          </ToastProvider>
+        </QueryProvider>
       </body>
     </html>
   );

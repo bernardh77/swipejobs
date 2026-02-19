@@ -223,7 +223,7 @@ export async function submitJobDecision(
   await fetchJson<unknown>(
     `${API_BASE}/worker/${WORKER_ID}/job/${jobId}/${action}`,
     { method: "GET" },
-    () => true
+    (_value: unknown): _value is unknown => true
   );
 }
 

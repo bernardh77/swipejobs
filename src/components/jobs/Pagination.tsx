@@ -1,25 +1,51 @@
 import styles from "./Pagination.module.css";
 
 type PaginationProps = {
-  page: number;
+  currentPage: number;
   totalPages: number;
-  totalItems: number;
-  pageSize: number;
   onPageChange: (page: number) => void;
 };
 
+export function getVisiblePages(
+  currentPage: number,
+  totalPages: number
+): number[] {
+  if (totalPages <= 3) {
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+  if (currentPage <= 2) {
+    return [1, 2, 3];
+  }
+  if (currentPage >= totalPages - 1) {
+    return [totalPages - 2, totalPages - 1, totalPages];
+  }
+  return [currentPage - 1, currentPage, currentPage + 1];
+}
+
 export default function Pagination({
-  page,
+  currentPage,
   totalPages,
-  totalItems,
-  pageSize,
   onPageChange,
 }: PaginationProps) {
-  const visiblePages = Math.min(3, totalPages);
-  const pages = Array.from({ length: visiblePages }, (_, index) => index + 1);
+  if (totalPages <= 1) {
+    return null;
+  }
+
+  const pages = getVisiblePages(currentPage, totalPages);
+  const hasPrev = currentPage > 1;
+  const hasNext = currentPage < totalPages;
 
   return (
-    <div className={styles.pagination}>
+    <nav className={styles.pagination} aria-label="Pagination">
+      <button
+        type="button"
+        className={styles.arrowBtn}
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={!hasPrev}
+        aria-label="Previous page"
+      >
+        Prev
+      </button>
       <div className={styles.pageList} role="list">
         {pages.map((pageNumber) => (
           <button
@@ -27,15 +53,25 @@ export default function Pagination({
             type="button"
             role="listitem"
             className={`${styles.pagePill} ${
-              pageNumber === page ? styles.pagePillActive : ""
+              pageNumber === currentPage ? styles.pagePillActive : ""
             }`}
             onClick={() => onPageChange(pageNumber)}
-            aria-current={pageNumber === page ? "page" : undefined}
+            aria-current={pageNumber === currentPage ? "page" : undefined}
+            aria-label={`Go to page ${pageNumber}`}
           >
             {pageNumber}
           </button>
         ))}
       </div>
-    </div>
+      <button
+        type="button"
+        className={styles.arrowBtn}
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={!hasNext}
+        aria-label="Next page"
+      >
+        Next
+      </button>
+    </nav>
   );
 }

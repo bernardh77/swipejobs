@@ -26,6 +26,10 @@
   box-shadow: var(--shadow);
 }
 
+.pending {
+  opacity: 0.72;
+}
+
 .mark {
   display: flex;
   align-items: flex-start;
@@ -43,6 +47,14 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+}
+
+.compactPay {
+  display: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
 }
 
 .title {
@@ -73,6 +85,16 @@
 }
 
 .metaLine {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.compactMeta {
+  display: none;
   margin: 0;
   color: var(--muted);
   font-size: 12px;
@@ -118,6 +140,19 @@
   align-items: flex-end;
   gap: 10px;
   min-width: 170px;
+}
+
+.pendingLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.chevron {
+  display: none;
+  font-size: 18px;
+  color: var(--muted);
 }
 
 .payBlock {
@@ -266,18 +301,60 @@
   }
 }
 
-@media (max-width: 600px) {
+/* Mobile-only list treatment to make rows tappable and compact. */
+@media (max-width: 640px) {
+  .row {
+    padding: 12px;
+    border-radius: 14px;
+  }
+
   .card {
     grid-template-columns: auto 1fr;
     gap: 12px;
   }
 
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
+  .row .header {
+    flex-direction: row;
+    align-items: center;
   }
 
-  .side {
-    align-items: stretch;
+  .row .compactPay {
+    display: inline-flex;
+  }
+
+  .row .compactMeta {
+    display: block;
+  }
+
+  .row .chips {
+    display: none;
+  }
+
+  .row .payBlock {
+    display: none;
+  }
+
+  .row .chevron {
+    display: inline-flex;
+  }
+
+  .row .side {
+    position: absolute;
+    right: 12px;
+    top: 14px;
+    min-width: auto;
+    align-items: center;
+  }
+
+  .row .title {
+    font-size: 16px;
+  }
+
+  .row .companyLine {
+    font-size: 12px;
+  }
+
+  .row .metaLine {
+    font-size: 12px;
   }
 }

@@ -1,4 +1,4 @@
-import type { Job } from "@/lib/types";
+import type { Job, JobDecision } from "@/lib/types";
 import type { KeyboardEvent } from "react";
 import CompanyMark from "./CompanyMark";
 import styles from "./JobCard.module.css";
@@ -8,6 +8,7 @@ type JobCardProps = {
   isSubmitting: boolean;
   isPreview: boolean;
   isSelected?: boolean;
+  pendingDecision?: JobDecision | null;
   variant?: "row" | "list" | "detail";
   showActions?: boolean;
   onAccept: () => void;
@@ -20,6 +21,7 @@ export default function JobCard({
   isSubmitting,
   isPreview,
   isSelected = false,
+  pendingDecision = null,
   variant = "detail",
   showActions = true,
   onAccept,
@@ -32,6 +34,19 @@ export default function JobCard({
       ? `${job.distanceMiles.toFixed(1)} mi`
       : "--";
   const startLabel = job.startDate ?? "--";
+  const shiftCount =
+    typeof job.shiftCount === "number"
+      ? job.shiftCount
+      : job.shifts?.length ?? null;
+  const compactMeta = [
+    typeof job.distanceMiles === "number" ? distanceLabel : null,
+    startLabel !== "--" ? `Start ${startLabel}` : null,
+    typeof shiftCount === "number"
+      ? `${shiftCount} shift${shiftCount === 1 ? "" : "s"}`
+      : null,
+  ]
+    .filter(Boolean)
+    .join(" • ");
 
   const handleCardKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (!onOpen) return;
@@ -42,6 +57,7 @@ export default function JobCard({
   };
 
   const showCompactChips = variant !== "detail";
+  const isPending = Boolean(pendingDecision);
   const shouldShowActions = showActions && !isPreview;
 
   return (
@@ -50,9 +66,10 @@ export default function JobCard({
         onOpen ? styles.cardInteractive : ""
       } ${isSelected ? styles.selected : ""} ${
         !shouldShowActions ? styles.noActions : ""
-      }`}
+      } ${isPending ? styles.pending : ""}`}
       aria-live="polite"
       aria-selected={isSelected}
+      aria-busy={isPending || undefined}
       role={onOpen ? "button" : undefined}
       tabIndex={onOpen ? 0 : undefined}
       onClick={onOpen}
@@ -64,12 +81,16 @@ export default function JobCard({
       <div className={styles.main}>
         <div className={styles.header}>
           <h3 className={styles.title}>{job.title}</h3>
+          <span className={styles.compactPay}>{payLabel}</span>
         </div>
         <p className={styles.companyLine}>{job.company}</p>
         <p className={styles.metaLine}>
           {job.industry}
           {/* {job.location ? ` · ${job.location}` : ""} */}
         </p>
+        {compactMeta ? (
+          <p className={styles.compactMeta}>{compactMeta}</p>
+        ) : null}
         <div className={styles.chips}>
           {showCompactChips ? (
             <>
@@ -101,10 +122,18 @@ export default function JobCard({
         </div>
       </div>
       <div className={styles.side}>
+        {isPending ? (
+          <span className={styles.pendingLabel}>
+            Pending {pendingDecision === "accepted" ? "accept" : "reject"}
+          </span>
+        ) : null}
         <div className={styles.payBlock}>
           <span className={styles.payLabel}>Pay</span>
           <span className={styles.payValue}>{payLabel}</span>
         </div>
+        <span className={styles.chevron} aria-hidden="true">
+          ›
+        </span>
         {shouldShowActions ? (
           <div className={styles.actions}>
             <button
@@ -113,7 +142,7 @@ export default function JobCard({
                 event.stopPropagation();
                 onAccept();
               }}
-              disabled={isSubmitting || isPreview}
+              disabled={isSubmitting || isPreview || isPending}
               aria-label={`Accept ${job.title}`}
             >
               {isSubmitting ? (
@@ -128,7 +157,7 @@ export default function JobCard({
                 event.stopPropagation();
                 onReject();
               }}
-              disabled={isSubmitting || isPreview}
+              disabled={isSubmitting || isPreview || isPending}
               aria-label={`Not interested in ${job.title}`}
             >
               {isSubmitting ? (
