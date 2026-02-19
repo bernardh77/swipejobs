@@ -1,0 +1,194 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************/
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto,
+    Arial, sans-serif;
+  color: #2a241f;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.appScroll {
+  flex: 1 1;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+  background: radial-gradient(
+    circle at top,
+    #ffffff 0%,
+    #f6f7f9 60%,
+    #f2f4f7 100%
+  );
+}
+
+h1,
+h2,
+h3 {
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid #1b1b1b;
+  outline-offset: 2px;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #efe8dc 25%, #f9f4eb 50%, #efe8dc 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 16px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./src/components/navbar/Navbar.module.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+.Navbar_navbar__eZD5G {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: #ffffff;
+  border-bottom: 1px solid #ece7e0;
+}
+
+.Navbar_inner__c5HKz {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+}
+
+.Navbar_logo__MAFPE {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: #2a241f;
+  font-size: 16px;
+  text-transform: lowercase;
+}
+
+.Navbar_profile__YSVGP {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.Navbar_avatarButton__TJy4I {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.Navbar_avatar__agQIf {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #f3ebe2;
+  border: 1px solid #e5d8cc;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #3b2f25;
+}
+
+.Navbar_popover__aIFrT {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  min-width: 220px;
+  background: #ffffff;
+  border: 1px solid #e5d8cc;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 18px 40px rgba(60, 45, 30, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.Navbar_name__fXJ3W {
+  margin: 0;
+  font-weight: 600;
+  color: #2a241f;
+}
+
+.Navbar_address__fxl_L,
+.Navbar_distance__2OeKV {
+  margin: 0;
+  color: #6b5c50;
+  font-size: 13px;
+}
+
+.Navbar_closeButton__2c_pi {
+  margin-top: 8px;
+  border: none;
+  background: #1f1a16;
+  color: #fef6ee;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.Navbar_skeletonWrap___aDrY {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.Navbar_avatarSkeleton__zLcXW {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+}
+
+.Navbar_textSkeleton__Z2Fxs {
+  width: 80px;
+  height: 10px;
+  border-radius: 999px;
+}
+

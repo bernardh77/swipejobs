@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto,
+    Arial, sans-serif;
+  color: #2a241f;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.appScroll {
+  flex: 1;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+  background: radial-gradient(
+    circle at top,
+    #ffffff 0%,
+    #f6f7f9 60%,
+    #f2f4f7 100%
+  );
+}
+
+h1,
+h2,
+h3 {
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid #1b1b1b;
+  outline-offset: 2px;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #efe8dc 25%, #f9f4eb 50%, #efe8dc 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 16px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

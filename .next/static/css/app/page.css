@@ -1,0 +1,600 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./src/components/profile/ProfileHeader.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************/
+.ProfileHeader_card___Hn_G {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  padding: 20px 24px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #dcccbc;
+  box-shadow: 0 16px 40px rgba(60, 45, 30, 0.12);
+}
+
+.ProfileHeader_avatar__l44_6 {
+  width: 72px;
+  height: 72px;
+  border-radius: 24px;
+  object-fit: cover;
+  border: 3px solid #fff6ee;
+  box-shadow: 0 10px 18px rgba(33, 27, 20, 0.15);
+}
+
+.ProfileHeader_content__saeWO {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ProfileHeader_label__Oad76 {
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #8b7a69;
+  margin: 0;
+}
+
+.ProfileHeader_name__dZ6jD {
+  font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto,
+    Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+  color: #2a241f;
+}
+
+.ProfileHeader_location__J4LFF {
+  margin: 0;
+  color: #4f463f;
+}
+
+.ProfileHeader_errorCard__ZDLJK {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: #fff6f0;
+  border: 1px solid #f2d5c5;
+}
+
+.ProfileHeader_errorCard__ZDLJK h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.ProfileHeader_errorCard__ZDLJK p {
+  margin: 0;
+  color: #6b5042;
+}
+
+.ProfileHeader_retryButton__ukHWA {
+  border: none;
+  background: #1b1b1b;
+  color: #fdf7ee;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ProfileHeader_avatarSkeleton__89Opz {
+  width: 72px;
+  height: 72px;
+  border-radius: 24px;
+}
+
+.ProfileHeader_line__gqG9i {
+  width: 200px;
+  height: 20px;
+  border-radius: 12px;
+}
+
+.ProfileHeader_subline__Mn_yS {
+  width: 140px;
+  height: 14px;
+  border-radius: 12px;
+}
+
+@media (max-width: 600px) {
+  .ProfileHeader_card___Hn_G {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ProfileHeader_line__gqG9i {
+    width: 160px;
+  }
+}
+
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./src/components/jobs/CompanyMark.module.css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+.CompanyMark_mark__VdTDA {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #f5ede4;
+  border: 1px solid #e4d6c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #3b2f25;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./src/components/jobs/JobCard.module.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
+.JobCard_card__E5ytg {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-gap: 16px;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #d9cabb;
+  box-shadow: 0 16px 36px rgba(60, 45, 30, 0.12);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.JobCard_cardInteractive__llgUv {
+  cursor: pointer;
+}
+
+.JobCard_cardInteractive__llgUv:hover {
+  border-color: #c6b3a1;
+  box-shadow: 0 18px 45px rgba(60, 45, 30, 0.16);
+}
+
+.JobCard_mark__ZSLXc {
+  display: flex;
+  align-items: flex-start;
+}
+
+.JobCard_main__AjhK1 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.JobCard_header__iWRs4 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.JobCard_title__o5s4b {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2a241f;
+}
+
+.JobCard_matchScore__2gXsi {
+  background: #efe2d4;
+  color: #3b2f25;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.JobCard_companyLine__ZKtgH {
+  margin: 0;
+  color: #3d342d;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.JobCard_metaLine__qC_3l {
+  margin: 0;
+  color: #5c5046;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.JobCard_chips__zHE7U {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.JobCard_chip__uUqtY {
+  display: inline-flex;
+  gap: 6px;
+  align-items: baseline;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: #fbf6ef;
+  border: 1px solid #e5d8cc;
+  font-size: 11px;
+}
+
+.JobCard_chipLabel__CZB1a {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8a7b6a;
+  font-weight: 600;
+}
+
+.JobCard_chipValue__M0MQQ {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2f2721;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+.JobCard_side__FPsd8 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  min-width: 170px;
+}
+
+.JobCard_payBlock__fxhhO {
+  text-align: right;
+}
+
+.JobCard_payLabel__O_lvo {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8a7b6a;
+}
+
+.JobCard_payValue__wMMZ4 {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: #2a241f;
+}
+
+.JobCard_actions__uizH0 {
+  display: grid;
+  grid-gap: 8px;
+  gap: 8px;
+  width: 100%;
+}
+
+.JobCard_actions__uizH0 button {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.JobCard_acceptButton__8XoLb {
+  background: #1f1a16;
+  color: #fef6ee;
+}
+
+.JobCard_rejectButton__gknHE {
+  background: transparent;
+  border: 1px solid #d1c3b6;
+  color: #5d4a3d;
+}
+
+.JobCard_actions__uizH0 button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.JobCard_inlineSpinner__dLQCg {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .JobCard_card__E5ytg {
+    grid-template-columns: auto 1fr;
+  }
+
+  .JobCard_side__FPsd8 {
+    grid-column: 1 / -1;
+    align-items: stretch;
+  }
+
+  .JobCard_payBlock__fxhhO {
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  .JobCard_card__E5ytg {
+    grid-template-columns: 1fr;
+  }
+
+  .JobCard_header__iWRs4 {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .JobCard_side__FPsd8 {
+    align-items: stretch;
+  }
+}
+
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./src/components/jobs/Pagination.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+.Pagination_pagination__NAPrg {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.Pagination_button__8nIfE {
+  border: 1px solid #2a241f;
+  background: transparent;
+  color: #2a241f;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.Pagination_button__8nIfE:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.Pagination_pageIndicator__WZdpJ {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5d5247;
+}
+
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./src/components/jobs/Toast.module.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
+.Toast_toast__vn5Ir {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: #1f1a16;
+  color: #fef6ee;
+  border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(30, 22, 18, 0.2);
+  font-size: 14px;
+  z-index: 50;
+}
+
+.Toast_actions__BAzDW {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.Toast_actionButton__w8DIc {
+  border: none;
+  background: #fef6ee;
+  color: #1f1a16;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.Toast_closeButton__OGfCb {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .Toast_toast__vn5Ir {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    justify-content: space-between;
+  }
+}
+
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./src/app/page.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+.page_page__ZU32B {
+  min-height: calc(100vh - 66px);
+  padding-bottom: 24px;
+}
+
+.page_container__aoG4z {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.page_hero__SKW6o {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.page_eyebrow__H9Slr {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7a6b5f;
+}
+
+.page_title__3jonF {
+  font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto,
+    Arial, sans-serif;
+  font-size: clamp(26px, 3.2vw, 36px);
+  line-height: 1.2;
+  font-weight: 600;
+  margin: 12px 0 10px;
+}
+
+.page_subtitle__iAJUg {
+  max-width: 540px;
+  color: #4f463f;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.page_section__61PEw {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.page_body__pK_rb {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) 1fr;
+  grid-gap: 32px;
+  gap: 32px;
+  align-items: start;
+}
+
+.page_sidebar__J6ahr {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}
+
+.page_feed__cVf47 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.page_sectionHeader__a4Fw5 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.page_sectionTitle__hzsAh {
+  font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto,
+    Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.page_countBadge__pPRkk {
+  background: #1f1a16;
+  color: #fef6ee;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page_cards__Ff9Bq {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.page_cardSkeleton__QvOrA {
+  height: 160px;
+  border-radius: 18px;
+}
+
+.page_errorCard__qW7fc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: #fff6f0;
+  border: 1px solid #f2d5c5;
+}
+
+.page_errorCard__qW7fc h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.page_errorCard__qW7fc p {
+  margin: 0;
+  color: #6b5042;
+}
+
+.page_retryButton__kCQvk {
+  border: none;
+  background: #1b1b1b;
+  color: #fdf7ee;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.page_emptyState__Zyc7X {
+  text-align: center;
+  padding: 28px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px dashed #cbbfb2;
+}
+
+.page_emptyState__Zyc7X h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.page_emptyState__Zyc7X p {
+  margin: 0;
+  color: #6b625a;
+}
+
+@media (max-width: 720px) {
+  .page_page__ZU32B {
+    padding-bottom: 32px;
+  }
+
+  .page_sectionHeader__a4Fw5 {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .page_hero__SKW6o {
+    padding: 0;
+  }
+
+  .page_body__pK_rb {
+    grid-template-columns: 1fr;
+  }
+
+  .page_sidebar__J6ahr {
+    position: static;
+  }
+}
+

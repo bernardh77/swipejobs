@@ -1,0 +1,175 @@
+.page {
+  min-height: calc(100vh - 66px);
+  padding-bottom: 24px;
+}
+
+.container {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7a6b5f;
+}
+
+.title {
+  font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto,
+    Arial, sans-serif;
+  font-size: clamp(26px, 3.2vw, 36px);
+  line-height: 1.2;
+  font-weight: 600;
+  margin: 12px 0 10px;
+}
+
+.subtitle {
+  max-width: 540px;
+  color: #4f463f;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.sidebar {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.sectionTitle {
+  font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto,
+    Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.countBadge {
+  background: #1f1a16;
+  color: #fef6ee;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardSkeleton {
+  height: 160px;
+  border-radius: 18px;
+}
+
+.errorCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: #fff6f0;
+  border: 1px solid #f2d5c5;
+}
+
+.errorCard h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.errorCard p {
+  margin: 0;
+  color: #6b5042;
+}
+
+.retryButton {
+  border: none;
+  background: #1b1b1b;
+  color: #fdf7ee;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 28px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px dashed #cbbfb2;
+}
+
+.emptyState h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.emptyState p {
+  margin: 0;
+  color: #6b625a;
+}
+
+@media (max-width: 720px) {
+  .page {
+    padding-bottom: 32px;
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero {
+    padding: 0;
+  }
+
+  .body {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+}
