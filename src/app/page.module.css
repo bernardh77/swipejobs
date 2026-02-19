@@ -99,18 +99,18 @@
 .listScroll {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 0;
 }
 
 .cards {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 0;
 }
 
 .cardSkeleton {
   height: 160px;
-  border-radius: 18px;
+  border-radius: 0;
 }
 
 .errorCard {

@@ -175,6 +175,31 @@
   letter-spacing: 0.04em;
 }
 
+.row {
+  padding: 12px 14px;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.row:hover {
+  background: #fff8f1;
+}
+
+.row.selected {
+  background: #fff6ee;
+  box-shadow: inset 2px 0 0 #d4c3b3;
+}
+
+.row + .row {
+  border-top: 1px solid #efe7de;
+}
+
+.noActions .side {
+  min-width: 130px;
+}
+
 .list {
   padding: 12px 14px;
   gap: 12px;

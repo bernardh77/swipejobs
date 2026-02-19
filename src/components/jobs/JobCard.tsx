@@ -8,7 +8,8 @@ type JobCardProps = {
   isSubmitting: boolean;
   isPreview: boolean;
   isSelected?: boolean;
-  variant?: "list" | "detail";
+  variant?: "row" | "list" | "detail";
+  showActions?: boolean;
   onAccept: () => void;
   onReject: () => void;
   onOpen?: () => void;
@@ -20,6 +21,7 @@ export default function JobCard({
   isPreview,
   isSelected = false,
   variant = "detail",
+  showActions = true,
   onAccept,
   onReject,
   onOpen,
@@ -39,13 +41,16 @@ export default function JobCard({
     }
   };
 
-  const showCompactChips = variant === "list";
+  const showCompactChips = variant !== "detail";
+  const shouldShowActions = showActions && !isPreview;
 
   return (
     <article
       className={`${styles.card} ${styles[variant]} ${
         onOpen ? styles.cardInteractive : ""
-      } ${isSelected ? styles.selected : ""}`}
+      } ${isSelected ? styles.selected : ""} ${
+        !shouldShowActions ? styles.noActions : ""
+      }`}
       aria-live="polite"
       aria-selected={isSelected}
       role={onOpen ? "button" : undefined}
@@ -100,38 +105,40 @@ export default function JobCard({
           <span className={styles.payLabel}>Pay</span>
           <span className={styles.payValue}>{payLabel}</span>
         </div>
-        <div className={styles.actions}>
-          <button
-            className={styles.acceptButton}
-            onClick={(event) => {
-              event.stopPropagation();
-              onAccept();
-            }}
-            disabled={isSubmitting || isPreview}
-            aria-label={`Accept ${job.title}`}
-          >
-            {isSubmitting ? (
-              <span className={styles.inlineSpinner}>Submitting...</span>
-            ) : (
-              "Accept"
-            )}
-          </button>
-          <button
-            className={styles.rejectButton}
-            onClick={(event) => {
-              event.stopPropagation();
-              onReject();
-            }}
-            disabled={isSubmitting || isPreview}
-            aria-label={`Not interested in ${job.title}`}
-          >
-            {isSubmitting ? (
-              <span className={styles.inlineSpinner}>Submitting...</span>
-            ) : (
-              "Not interested"
-            )}
-          </button>
-        </div>
+        {shouldShowActions ? (
+          <div className={styles.actions}>
+            <button
+              className={styles.acceptButton}
+              onClick={(event) => {
+                event.stopPropagation();
+                onAccept();
+              }}
+              disabled={isSubmitting || isPreview}
+              aria-label={`Accept ${job.title}`}
+            >
+              {isSubmitting ? (
+                <span className={styles.inlineSpinner}>Submitting...</span>
+              ) : (
+                "Accept"
+              )}
+            </button>
+            <button
+              className={styles.rejectButton}
+              onClick={(event) => {
+                event.stopPropagation();
+                onReject();
+              }}
+              disabled={isSubmitting || isPreview}
+              aria-label={`Not interested in ${job.title}`}
+            >
+              {isSubmitting ? (
+                <span className={styles.inlineSpinner}>Submitting...</span>
+              ) : (
+                "Not interested"
+              )}
+            </button>
+          </div>
+        ) : null}
       </div>
     </article>
   );

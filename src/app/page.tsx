@@ -241,6 +241,8 @@ export default function Home() {
                             isSubmitting={isSubmitting}
                             isPreview={false}
                             isSelected={isDesktop && selectedJobId === job.id}
+                            variant="row"
+                            showActions={!isDesktop}
                             onAccept={() => handleDecision(job, "accepted")}
                             onReject={() => handleDecision(job, "rejected")}
                             onOpen={() => handleRowOpen(job.id)}
