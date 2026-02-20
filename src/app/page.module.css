@@ -333,7 +333,7 @@
   }
 
   .listPanel {
-    padding: 6px;
+    padding: 0;
     border-radius: 14px;
   }
 
@@ -345,7 +345,7 @@
   }
 
   .rowLink {
-    border-radius: 14px;
+    border-radius: 0;
   }
 
   .rowLink:focus-visible {
@@ -361,8 +361,17 @@
     margin-top: 0;
   }
 
-  .rowLink + .rowLink .card {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+  .rowLink .card {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    box-shadow: none;
+  }
+
+  .rowLink + .rowLink {
+    border-top: 1px solid var(--border-strong);
+    padding-top: 0;
+    margin-top: 0;
   }
 }
