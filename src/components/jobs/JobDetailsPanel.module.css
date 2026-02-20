@@ -166,19 +166,12 @@
   flex-direction: column;
 }
 
-.shiftListExpanded {
-  max-height: 360px;
-  overflow-y: auto;
-  scrollbar-gutter: stable;
-  padding-right: 4px;
-}
-
 .shiftItem {
   display: flex;
   justify-content: space-between;
   gap: 12px;
   padding: 12px 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-strong);
   font-size: 14px;
   color: var(--text);
 }
@@ -196,6 +189,86 @@
   color: var(--muted);
 }
 
+.shiftScroll {
+  position: relative;
+}
+
+.scheduleScroll {
+  scrollbar-gutter: stable both-edges;
+}
+
+.scheduleInner {
+  /* padding-right: 12px; */
+}
+
+.shiftScrollExpanded {
+  max-height: 320px;
+  overflow-y: auto;
+  scrollbar-gutter: stable both-edges;
+  box-sizing: border-box;
+  padding-right: 14px;
+  margin-right: -14px;
+  position: relative;
+}
+
+.shiftScrollExpanded .shiftList {
+  max-height: none;
+  overflow: visible;
+}
+
+.shiftScrollExpanded .shiftList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.shiftScrollExpanded .shiftList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.shiftScrollExpanded .shiftList::-webkit-scrollbar-thumb {
+  background-color: rgba(17, 24, 39, 0.3);
+  border-radius: 999px;
+}
+
+.shiftScrollExpanded::before,
+.shiftScrollExpanded::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.shiftScrollExpanded::before {
+  top: 0;
+  background: linear-gradient(var(--surface), rgba(255, 255, 255, 0));
+}
+
+.shiftScrollExpanded::after {
+  bottom: 0;
+  background: linear-gradient(rgba(255, 255, 255, 0), var(--surface));
+}
+
+.shiftScrollTop::before {
+  opacity: 1;
+}
+
+.shiftScrollBottom::after {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .shiftScrollExpanded {
+    max-height: 40vh;
+  }
+
+  .shiftScrollExpanded .shiftList {
+    max-height: none;
+  }
+}
+
 .scheduleCard {
   border-color: var(--border);
   box-shadow: var(--shadow-soft);
@@ -208,7 +281,7 @@
 .detailsGrid {
   display: grid;
   gap: 12px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .requirementsBlock {
@@ -270,7 +343,7 @@
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 640px) {
   .title {
     font-size: 26px;
   }

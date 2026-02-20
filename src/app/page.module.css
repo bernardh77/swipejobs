@@ -19,6 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding:0 8px;
   /* padding: 20px 0; */
 }
 
@@ -90,6 +91,7 @@
 .sectionHeader {
   display: flex;
   align-items: center;
+  padding:0 8px;
   gap: 12px;
   justify-content: space-between;
 }
@@ -231,7 +233,7 @@
 @media (min-width: 900px) {
   .body {
     display: grid;
-    grid-template-columns: minmax(360px, 440px) 1px minmax(0, 1fr);
+    grid-template-columns: minmax(260px, 380px) 1px minmax(520px, 1fr);
     gap: 16px;
     flex: 1;
     min-height: 0;
@@ -254,7 +256,7 @@
     flex: 1;
     min-height: 0;
     overflow-y: auto;
-    padding-right: 8px;
+    /* padding-right: 8px; */
   }
 
   .detailPane {
@@ -277,41 +279,57 @@
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 640px) {
+  .container {
+    padding: 0;
+    width: min(100%, 92vw);
+    gap: 16px;
+    flex: initial;
+    min-height: auto;
+  }
+
   .page {
-    padding-top: 20px;
+    padding-top: 16px;
     padding-bottom: 32px;
   }
 
   .sectionHeader {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    padding: 0 8px;
+    align-items: center;
   }
 
   .hero {
     padding: 0;
-  }
-}
-
-/* Mobile list spacing + tap affordance adjustments. */
-@media (max-width: 640px) {
-  .container {
-    width: min(100%, 92vw);
-    gap: 16px;
+    margin: 0;
   }
 
   .body {
-    padding: 12px;
+    /* padding: 12px; */
     gap: 16px;
+    flex: initial;
+    min-height: auto;
+    background: transparent;
+    padding: 0;
   }
 
   .feed {
     gap: 12px;
+    padding: 0;
+    flex: initial;
+    min-height: auto;
   }
 
   .listPanel {
     padding: 6px;
     border-radius: 14px;
+  }
+
+  .listScroll {
+    flex: initial;
+    min-height: auto;
+    overflow: visible;
+    padding-right: 0;
   }
 
   .rowLink {
@@ -325,5 +343,9 @@
 
   .rowLink:active {
     transform: translateY(1px);
+  }
+
+  .title {
+    margin-top: 0;
   }
 }

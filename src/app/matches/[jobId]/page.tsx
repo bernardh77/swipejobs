@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import JobDetailsPanel from "@/components/jobs/JobDetailsPanel";
@@ -13,6 +13,7 @@ export default function MatchDetailsPage({
   params: { jobId: string };
 }) {
   const router = useRouter();
+  const [isDesktop, setIsDesktop] = useState(false);
   const {
     visibleJobs,
     worker,
@@ -35,6 +36,14 @@ export default function MatchDetailsPage({
       visibleJobs[index + 1]?.id ?? visibleJobs[index - 1]?.id ?? null
     );
   }, [job, visibleJobs]);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 900px)");
+    const update = () => setIsDesktop(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     if (isLoading) {
@@ -76,7 +85,9 @@ export default function MatchDetailsPage({
         pendingDecision={pendingDecision}
         onAccept={() => {
           scheduleDecision(job.id, "accepted");
-          if (nextJobId) {
+          if (!isDesktop) {
+            router.replace("/matches");
+          } else if (nextJobId) {
             router.replace(`/matches/${nextJobId}`);
           } else {
             router.replace("/matches");
@@ -84,7 +95,9 @@ export default function MatchDetailsPage({
         }}
         onReject={() => {
           scheduleDecision(job.id, "rejected");
-          if (nextJobId) {
+          if (!isDesktop) {
+            router.replace("/matches");
+          } else if (nextJobId) {
             router.replace(`/matches/${nextJobId}`);
           } else {
             router.replace("/matches");

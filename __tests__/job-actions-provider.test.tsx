@@ -94,7 +94,7 @@ describe("JobActionsProvider", () => {
     await act(async () => {});
     fireEvent.click(screen.getByText("Accept"));
     expect(screen.getByTestId("count")).toHaveTextContent("1");
-    fireEvent.click(screen.getByText("Undo"));
+    fireEvent.click(screen.getAllByText("Undo")[0]);
     expect(screen.getByTestId("count")).toHaveTextContent("2");
 
     await act(async () => {

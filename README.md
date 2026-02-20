@@ -1,6 +1,6 @@
 # SwipeJobs Take-Home
 
-A Next.js (App Router) React app that loads a worker profile, job matches, and supports accept/reject decisions using the SwipeJobs test API.
+A Next.js (App Router) React app that loads worker matches and supports accept/reject decisions using the SwipeJobs test API.
 
 ## Setup
 
@@ -20,15 +20,17 @@ Open `http://localhost:3000`.
 ## Architecture Notes
 
 - Data access is centralized in `src/lib/api.ts`, with runtime guards and a shared `ApiError`.
-- `src/hooks/useProfile.ts` and `src/hooks/useJobs.ts` encapsulate fetch state, errors, and reloading.
+- `src/hooks/useMatchesData.ts` encapsulates fetching worker + matches with React Query.
+- `src/components/matches/JobActionsProvider.tsx` handles optimistic hide + undo flow with per-job timers.
 - `src/components` contains UI building blocks with CSS Modules for isolated styling.
-- Optimistic updates for accept/reject live in `src/app/page.tsx` and revert on failure.
 - Next.js route handlers in `src/app/api` proxy SwipeJobs requests to avoid browser CORS issues.
+- Routes are under `/matches` with a persistent split layout on desktop.
 
 ## Testing
 
 - `__tests__/api.test.ts` covers success and failure cases, including network, 404, and 500 responses.
 - `__tests__/pagination.test.tsx` validates pagination behavior and disabled states.
+- `__tests__/job-actions-provider.test.tsx` covers optimistic hide + undo behavior.
 
 ## Project Structure
 
@@ -39,20 +41,44 @@ src/
     page.tsx
     globals.css
     page.module.css
+    not-found.tsx
+    matches/
+      layout.tsx
+      page.tsx
+      [jobId]/
+        page.tsx
+        loading.tsx
   components/
-    ProfileHeader.tsx
-    ProfileHeader.module.css
-    JobCard.tsx
-    JobCard.module.css
-    Pagination.tsx
-    Pagination.module.css
+    jobs/
+      CompanyMark.tsx
+      JobCard.tsx
+      JobCard.module.css
+      JobDetailsPanel.tsx
+      JobDetailsPanel.module.css
+      Pagination.tsx
+      Pagination.module.css
+      Toast.tsx
+      Toast.module.css
+      ToastProvider.tsx
+      ToastProvider.module.css
+    matches/
+      JobActionsProvider.tsx
+      MatchesList.tsx
+      MatchesShell.tsx
+    navbar/
+      Navbar.tsx
+      Navbar.module.css
+    providers/
+      QueryProvider.tsx
   hooks/
-    useProfile.ts
-    useJobs.ts
+    useMatchesData.ts
   lib/
     api.ts
     types.ts
 __tests__/
   api.test.ts
   pagination.test.tsx
+  job-actions-provider.test.tsx
+  jobcard.test.tsx
+  jobdetails-panel.test.tsx
 ```

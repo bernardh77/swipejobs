@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Job, JobDecision } from "@/lib/types";
 import styles from "./JobDetailsPanel.module.css";
 
@@ -22,6 +22,9 @@ export default function JobDetailsPanel({
   showActions = true,
 }: JobDetailsPanelProps) {
   const [showAllShifts, setShowAllShifts] = useState(false);
+  const [showTopShadow, setShowTopShadow] = useState(false);
+  const [showBottomShadow, setShowBottomShadow] = useState(false);
+  const shiftListRef = useRef<HTMLUListElement | null>(null);
   const distance = job.distanceMiles ?? 0;
   const isOutOfRange =
     typeof maxDistance === "number" && distance > maxDistance;
@@ -68,6 +71,23 @@ export default function JobDetailsPanel({
 
   const isPending = Boolean(pendingDecision);
 
+  const updateShadows = useCallback(() => {
+    const node = shiftListRef.current;
+    if (!node || !showAllShifts) {
+      setShowTopShadow(false);
+      setShowBottomShadow(false);
+      return;
+    }
+    const { scrollTop, scrollHeight, clientHeight } = node;
+    const hasOverflow = scrollHeight > clientHeight + 1;
+    setShowTopShadow(hasOverflow && scrollTop > 2);
+    setShowBottomShadow(hasOverflow && scrollTop + clientHeight < scrollHeight - 2);
+  }, [showAllShifts]);
+
+  useEffect(() => {
+    updateShadows();
+  }, [showAllShifts, shifts.length, updateShadows]);
+
   return (
     <section className={styles.panel}>
       <header className={styles.header}>
@@ -110,9 +130,9 @@ export default function JobDetailsPanel({
               ) : null}
             </div>
           </div>
-          <div className={styles.requirementsBlock}>
-            <span className={styles.metaLabel}>Requirements</span>
-            {job.requirements?.length ? (
+          {job.requirements?.length ? (
+            <div className={styles.requirementsBlock}>
+              <span className={styles.metaLabel}>Requirements</span>
               <div className={styles.requirementsChips}>
                 {job.requirements.map((req) => (
                   <span key={req} className={styles.requirementChip}>
@@ -120,10 +140,8 @@ export default function JobDetailsPanel({
                   </span>
                 ))}
               </div>
-            ) : (
-              <p className={styles.muted}>No requirements listed.</p>
-            )}
-          </div>
+            </div>
+          ) : null}
         </section>
 
         <section className={`${styles.sectionCard} ${styles.scheduleCard}`}>
@@ -143,18 +161,30 @@ export default function JobDetailsPanel({
           {shifts.length === 0 ? (
             <p className={styles.muted}>No shifts available.</p>
           ) : (
-            <ul
-              className={`${styles.shiftList} ${
-                showAllShifts ? styles.shiftListExpanded : ""
+            <div
+              className={`${styles.shiftScroll} ${styles.scheduleScroll} ${
+                showAllShifts ? styles.shiftScrollExpanded : ""
+              } ${showTopShadow ? styles.shiftScrollTop : ""} ${
+                showBottomShadow ? styles.shiftScrollBottom : ""
               }`}
             >
-              {showShifts.map((shift, index) => (
-                <li key={`${shift.date}-${index}`} className={styles.shiftItem}>
-                  <span className={styles.shiftDate}>{shift.date}</span>
-                  <span className={styles.shiftTime}>{shift.time}</span>
-                </li>
-              ))}
-            </ul>
+              <div className={styles.scheduleInner}>
+                <ul
+                  ref={shiftListRef}
+                  className={styles.shiftList}
+                  onScroll={updateShadows}
+                  tabIndex={0}
+                  aria-label="Job schedule shifts"
+                >
+                  {showShifts.map((shift, index) => (
+                    <li key={`${shift.date}-${index}`} className={styles.shiftItem}>
+                      <span className={styles.shiftDate}>{shift.date}</span>
+                      <span className={styles.shiftTime}>{shift.time}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           )}
         </section>
       </div>

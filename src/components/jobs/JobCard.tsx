@@ -131,9 +131,9 @@ export default function JobCard({
           <span className={styles.payLabel}>Pay</span>
           <span className={styles.payValue}>{payLabel}</span>
         </div>
-        <span className={styles.chevron} aria-hidden="true">
+        {/* <span className={styles.chevron} aria-hidden="true">
           ›
-        </span>
+        </span> */}
         {shouldShowActions ? (
           <div className={styles.actions}>
             <button

@@ -85,3 +85,13 @@ button {
     background-position: -200% 0;
   }
 }
+
+@media (max-width: 640px) {
+  body {
+    background: var(--surface);
+  }
+
+  .appScroll {
+    background: var(--surface);
+  }
+}
