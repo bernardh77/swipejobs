@@ -124,6 +124,7 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
+  overflow: hidden;
   padding: 8px;
   display: flex;
   flex-direction: column;
@@ -134,6 +135,17 @@
   display: block;
   text-decoration: none;
   color: inherit;
+}
+
+.rowLink + .rowLink {
+  border-top: 2px solid var(--border-strong);
+  padding-top: 12px;
+  margin-top: 12px;
+}
+
+.rowLink + .rowLink .card {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .cards {
@@ -347,5 +359,10 @@
 
   .title {
     margin-top: 0;
+  }
+
+  .rowLink + .rowLink .card {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 }

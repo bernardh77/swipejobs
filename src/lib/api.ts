@@ -131,6 +131,7 @@ export async function fetchProfile(): Promise<WorkerProfile> {
 
   return {
     name: `${data.firstName} ${data.lastName}`,
+    email: data.email ?? "Email unavailable",
     location: data.address.formattedAddress || "Location unavailable",
     avatarUrl: buildProfileAvatar(`${data.firstName} ${data.lastName}`),
     maxJobDistance: data.maxJobDistance,

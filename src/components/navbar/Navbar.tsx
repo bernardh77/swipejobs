@@ -11,6 +11,7 @@ export default function Navbar() {
   const popoverRef = useRef<HTMLDivElement | null>(null);
 
   const fullName = data?.name ?? "Worker";
+  const email = data?.email ?? "Email unavailable";
   const address = data?.location ?? "Location unavailable";
   const maxDistance = data?.maxJobDistance;
   const initials =
@@ -71,10 +72,20 @@ export default function Navbar() {
           {isOpen ? (
             <div className={styles.popover} role="menu">
               <p className={styles.name}>{fullName}</p>
-              <p className={styles.address}>{address}</p>
-              <p className={styles.distance}>
-                Distance preference: {maxDistance ?? "—"} mi
-              </p>
+              <div className={styles.metaGroup}>
+                <span className={styles.metaLabel}>Email</span>
+                <span className={styles.metaValue}>{email}</span>
+              </div>
+              <div className={styles.metaGroup}>
+                <span className={styles.metaLabel}>Address</span>
+                <span className={styles.metaValue}>{address}</span>
+              </div>
+              <div className={styles.metaGroup}>
+                <span className={styles.metaLabel}>Distance preference</span>
+                <span className={styles.metaValue}>
+                  {maxDistance ?? "—"} mi
+                </span>
+              </div>
             </div>
           ) : null}
         </div>

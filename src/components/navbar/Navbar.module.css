@@ -72,18 +72,30 @@
   color: var(--text);
 }
 
-.address,
-.distance {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
+.metaGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.address {
-  max-width: 220px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.metaLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.metaValue {
+  margin: 0;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.4;
+  white-space: normal;
+}
+
+.distance {
+  margin: 0;
+  color: var(--text);
 }
 
 .closeButton {

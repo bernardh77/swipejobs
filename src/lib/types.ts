@@ -1,5 +1,6 @@
 export type WorkerProfile = {
   name: string;
+  email: string;
   location: string;
   avatarUrl: string;
   maxJobDistance?: number;
@@ -46,6 +47,7 @@ export type ProfileResponse = {
   workerId?: string;
   firstName: string;
   lastName: string;
+  email?: string;
   maxJobDistance?: number;
   address: {
     formattedAddress?: string;
