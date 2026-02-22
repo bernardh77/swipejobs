@@ -68,6 +68,30 @@ describe("api", () => {
       mockFetch(JSON.stringify({ id: 10 }))
     );
 
-    await expect(submitJobDecision(10, "accepted")).resolves.toBeUndefined();
+    await expect(submitJobDecision("job-10", "accepted")).resolves.toBeUndefined();
+  });
+
+  it("throws on unexpected profile shape", async () => {
+    (global.fetch as jest.Mock).mockReturnValue(
+      mockFetch(JSON.stringify({ firstName: "Taylor" }))
+    );
+
+    await expect(fetchProfile()).rejects.toThrow("Unexpected response shape");
+  });
+
+  it("throws on unexpected matches shape", async () => {
+    (global.fetch as jest.Mock).mockReturnValue(
+      mockFetch(JSON.stringify([{ jobId: 123 }]))
+    );
+
+    await expect(fetchJobs(1)).rejects.toThrow("Unexpected response shape");
+  });
+
+  it("throws on decision network failure", async () => {
+    (global.fetch as jest.Mock).mockRejectedValue(new Error("Network down"));
+
+    await expect(submitJobDecision("job-10", "rejected")).rejects.toThrow(
+      "Network error"
+    );
   });
 });

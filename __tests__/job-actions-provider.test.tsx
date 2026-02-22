@@ -45,7 +45,8 @@ function Harness() {
     <div>
       <span data-testid="count">{visibleJobs.length}</span>
       <button onClick={() => scheduleDecision("job-1", "accepted")}>Accept</button>
-      <button onClick={() => undoDecision("job-1")}>Undo</button>
+      <button onClick={() => scheduleDecision("job-2", "rejected")}>Reject</button>
+      <button onClick={() => undoDecision("job-1")}>Undo (direct)</button>
     </div>
   );
 }
@@ -94,7 +95,7 @@ describe("JobActionsProvider", () => {
     await act(async () => {});
     fireEvent.click(screen.getByText("Accept"));
     expect(screen.getByTestId("count")).toHaveTextContent("1");
-    fireEvent.click(screen.getAllByText("Undo")[0]);
+    fireEvent.click(screen.getByRole("button", { name: "Undo" }));
     expect(screen.getByTestId("count")).toHaveTextContent("2");
 
     await act(async () => {
@@ -102,5 +103,51 @@ describe("JobActionsProvider", () => {
     });
 
     expect(submitJobDecision).not.toHaveBeenCalled();
+  });
+
+  it("restores the job and shows an error on API failure", async () => {
+    (submitJobDecision as jest.Mock).mockRejectedValueOnce(new Error("fail"));
+    render(
+      <ToastProvider>
+        <JobActionsProvider>
+          <Harness />
+        </JobActionsProvider>
+      </ToastProvider>
+    );
+
+    await act(async () => {});
+    fireEvent.click(screen.getByText("Accept"));
+    expect(screen.getByTestId("count")).toHaveTextContent("1");
+
+    await act(async () => {
+      jest.advanceTimersByTime(3000);
+    });
+
+    expect(screen.getByTestId("count")).toHaveTextContent("2");
+    expect(
+      screen.getByText("Something went wrong. Please try again.")
+    ).toBeInTheDocument();
+  });
+
+  it("handles multiple pending actions independently", async () => {
+    render(
+      <ToastProvider>
+        <JobActionsProvider>
+          <Harness />
+        </JobActionsProvider>
+      </ToastProvider>
+    );
+
+    await act(async () => {});
+    fireEvent.click(screen.getByText("Accept"));
+    fireEvent.click(screen.getByText("Reject"));
+    expect(screen.getByTestId("count")).toHaveTextContent("0");
+
+    await act(async () => {
+      jest.advanceTimersByTime(3000);
+    });
+
+    expect(submitJobDecision).toHaveBeenCalledWith("job-1", "accepted");
+    expect(submitJobDecision).toHaveBeenCalledWith("job-2", "rejected");
   });
 });
