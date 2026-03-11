@@ -105,10 +105,10 @@ export default function JobCard({
             </>
           ) : (
             <>
-              <span className={styles.chip}>
+              {/* <span className={styles.chip}>
                 <span className={styles.chipLabel}>Match</span>
                 <span className={styles.chipValue}>{job.matchScore.toFixed(1)}</span>
-              </span>
+              </span> */}
               <span className={styles.chip}>
                 <span className={styles.chipLabel}>Distance</span>
                 <span className={styles.chipValue}>{distanceLabel}</span>

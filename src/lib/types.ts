@@ -13,7 +13,7 @@ export type Job = {
   industry: string;
   description: string;
   pay: number;
-  matchScore: number;
+  // matchScore: number;
   imageUrl: string;
   location?: string;
   distanceMiles?: number;

@@ -65,7 +65,7 @@
   color: var(--text);
 }
 
-.matchScore {
+/* .matchScore {
   background: var(--surface-2);
   color: var(--text);
   padding: 6px 12px;
@@ -73,7 +73,7 @@
   font-size: 12px;
   font-weight: 600;
   white-space: nowrap;
-}
+} */
 
 .companyLine {
   margin: 0;

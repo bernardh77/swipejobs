@@ -9,7 +9,7 @@ const baseJob: Job = {
   industry: "Chicago",
   description: "Requirements: Safety Vest",
   pay: 10.82,
-  matchScore: 3.5,
+  // matchScore: 3.5,
   imageUrl: "",
   distanceMiles: 11.7,
   startDate: "Sep 5",

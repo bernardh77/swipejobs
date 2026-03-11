@@ -185,7 +185,7 @@ export function mapMatchToJob(
   ].filter(Boolean);
   const description =
     descriptionParts.join(" ") || "Details available upon request.";
-  const matchScore = buildMatchScore(jobId);
+  // const matchScore = buildMatchScore(jobId);
   const imageUrl = match.jobTitle?.imageUrl ?? buildPlaceholderImage(title);
 
   return {
@@ -195,7 +195,7 @@ export function mapMatchToJob(
     industry,
     description,
     pay,
-    matchScore,
+    // matchScore,
     imageUrl,
     location,
     distanceMiles: match.milesToTravel,
@@ -232,6 +232,7 @@ export async function submitJobDecision(
   }
 }
 
+/*
 function buildMatchScore(jobId: string): number {
   let hash = 0;
   for (let i = 0; i < jobId.length; i += 1) {
@@ -239,6 +240,7 @@ function buildMatchScore(jobId: string): number {
   }
   return 3.2 + (hash % 18) / 10;
 }
+*/
 
 function buildPlaceholderImage(title: string): string {
   const initial = title.trim().slice(0, 1).toUpperCase() || "J";
