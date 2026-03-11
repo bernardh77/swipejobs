@@ -48,20 +48,18 @@ export default function JobDetailsPanel({
       .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime());
   }, [job.shifts, job.timeZone]);
 
-  const shiftSummary = useMemo(() => {
-    if (shifts.length === 0) {
-      return { countLabel: "No shifts", rangeLabel: "—" };
-    }
+  let shiftSummary = { countLabel: "No shifts", rangeLabel: "—" };
+  if (shifts.length > 0) {
     const first = shifts[0]?.start;
     const last = shifts[shifts.length - 1]?.start;
     const firstLabel = formatShiftDate(first, job.timeZone);
     const lastLabel = formatShiftDate(last, job.timeZone);
     const rangeLabel = firstLabel === lastLabel ? firstLabel : `${firstLabel}–${lastLabel}`;
-    return {
+    shiftSummary = {
       countLabel: `${shifts.length} shift${shifts.length === 1 ? "" : "s"}`,
       rangeLabel,
     };
-  }, [job.timeZone, shifts]);
+  }
 
   const showShifts = showAllShifts ? shifts : shifts.slice(0, 5);
   const scheduleChip =

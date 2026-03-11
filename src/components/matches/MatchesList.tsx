@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import JobCard from "@/components/jobs/JobCard";
@@ -25,26 +25,21 @@ export default function MatchesList({
 
   const activeJobId = selectedJobId ?? params?.jobId ?? null;
 
-  const pagedJobs = useMemo(() => {
-    const start = (page - 1) * pageSize;
-    return visibleJobs.slice(start, start + pageSize);
-  }, [visibleJobs, page]);
+  const start = (page - 1) * pageSize;
+  const pagedJobs = visibleJobs.slice(start, start + pageSize);
 
   const totalPages = Math.max(1, Math.ceil(visibleJobs.length / pageSize));
 
-  const displayJobs = useMemo(() => {
-    if (pagedJobs.length === 0) {
-      return [];
-    }
-    // Visual-only duplication to preview denser lists.
-    const multiplier = 1;
-    return Array.from({ length: multiplier }, (_, index) =>
-      pagedJobs.map((job) => ({
-        job,
-        key: `${job.id}-preview-${index}`,
-      }))
-    ).flat();
-  }, [pagedJobs]);
+  // Visual-only duplication to preview denser lists.
+  const multiplier = 1;
+  const displayJobs = pagedJobs.length === 0 
+    ? [] 
+    : Array.from({ length: multiplier }, (_, index) =>
+        pagedJobs.map((job) => ({
+          job,
+          key: `${job.id}-preview-${index}`,
+        }))
+      ).flat();
 
   const renderJobCard = (job: Job, key: string) => (
     <JobCard
