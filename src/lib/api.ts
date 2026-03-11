@@ -221,11 +221,15 @@ export async function submitJobDecision(
   decision: JobDecision
 ): Promise<void> {
   const action = decision === "accepted" ? "accept" : "reject";
-  await fetchJson<unknown>(
+  const response = await fetchJson<any>(
     `${API_BASE}/worker/${WORKER_ID}/job/${jobId}/${action}`,
     { method: "GET" },
     (_value: unknown): _value is unknown => true
   );
+
+  if (response && response.success === false) {
+    throw new ApiError(response.message || "Failed to process decision.");
+  }
 }
 
 function buildMatchScore(jobId: string): number {
