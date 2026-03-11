@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getErrorMessage, getMatches, getWorker, mapMatchToJob, WORKER_ID } from "@/lib/api";
 import type { Job, ProfileResponse } from "@/lib/types";
@@ -16,6 +16,35 @@ export function useMatchesData(): MatchesData {
     queryFn: () => getWorker(WORKER_ID),
   });
 
+  const maxDistance = workerQuery.data?.maxJobDistance;
+
+  // We wrap the select function in useCallback so React
+  // doesn't recreate this math function on every render.
+  const selectMatches = useCallback((matchesData: any[]) => {
+    const mapped = matchesData.map((match, index) =>
+      mapMatchToJob(match, index)
+    );
+
+    if (typeof maxDistance !== "number") {
+      return mapped;
+    }
+
+    return mapped.filter((job) => {
+      if (typeof job.distanceMiles !== "number") {
+        return true;
+      }
+      return job.distanceMiles <= maxDistance;
+    });
+  }, [maxDistance]); // <-- It will ONLY recreate this function if the user changes distance!
+
+  const matchesQuery = useQuery({
+    queryKey: ["matches", WORKER_ID],
+    queryFn: () => getMatches(WORKER_ID),
+    select: selectMatches, // <-- Use the memoized function here!
+  });
+
+  // --- PREVIOUS IMPLEMENTATION USING useMemo (Commented out for reference) ---
+  /*
   const matchesQuery = useQuery({
     queryKey: ["matches", WORKER_ID],
     queryFn: () => getMatches(WORKER_ID),
@@ -39,6 +68,7 @@ export function useMatchesData(): MatchesData {
       return job.distanceMiles <= maxDistance;
     });
   }, [matchesQuery.data, workerQuery.data]);
+  */
 
   const error =
     (workerQuery.error && getErrorMessage(workerQuery.error)) ||
@@ -47,7 +77,7 @@ export function useMatchesData(): MatchesData {
 
   return {
     worker: workerQuery.data ?? null,
-    jobs,
+    jobs: matchesQuery.data ?? [], // <-- Matches query now returns perfectly clean Job[] directly!
     isLoading: workerQuery.isLoading || matchesQuery.isLoading,
     error,
   };

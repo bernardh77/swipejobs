@@ -68,11 +68,15 @@ function MatchesShellContent({
   const { visibleJobs, isLoading } = useJobActions();
 
   useEffect(() => {
+    // If it's on mobile, OR they already have a job selected, OR data is still loading... do nothing.
     if (!isDesktop || hasJobId || isLoading) {
       return;
     }
+    // Otherwise (Desktop + No Job Selected + Data is Loaded):
+    // Auto-select the very first job in the list.
     if (visibleJobs.length > 0) {
       onAutoSelect(visibleJobs[0].id);
+      // This triggers router.replace(`/matches/${jobId}`
     }
   }, [isDesktop, hasJobId, isLoading, visibleJobs, onAutoSelect]);
 
