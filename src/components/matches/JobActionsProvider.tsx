@@ -33,7 +33,7 @@ type JobActionsContextValue = {
 };
 
 const JobActionsContext = createContext<JobActionsContextValue | null>(null);
-const UNDO_WINDOW_MS = 3000;
+const UNDO_WINDOW_MS = 3 * 1000;
 
 export function JobActionsProvider({
   children,
@@ -84,7 +84,7 @@ export function JobActionsProvider({
       restoreJob(current.job, current.originalIndex);
       showToast({
         message: "Undone",
-        dismissAfterMs: 1500,
+        dismissAfterMs: 1.5 * 1000,
       });
       const next = { ...pendingRef.current };
       delete next[jobId];
@@ -101,7 +101,7 @@ export function JobActionsProvider({
           message: decision === "accepted" ? "Accepted" : "Rejected",
           actionLabel: undefined,
           onAction: undefined,
-          dismissAfterMs: 2500,
+          dismissAfterMs: 2.5 * 1000,
         });
       } catch (error) {
         const pending = pendingRef.current[jobId];
@@ -112,7 +112,7 @@ export function JobActionsProvider({
           message: "Something went wrong. Please try again.",
           actionLabel: undefined,
           onAction: undefined,
-          dismissAfterMs: 3000,
+          dismissAfterMs: 3 * 1000,
         });
       } finally {
         const next = { ...pendingRef.current };
