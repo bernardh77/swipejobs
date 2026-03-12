@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Job, JobDecision } from "@/lib/types";
 import styles from "./JobDetailsPanel.module.css";

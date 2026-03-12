@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./Toast.module.css";
 
 type ToastProps = {

@@ -1,3 +1,5 @@
+"use client";
+
 import type { Job, JobDecision } from "@/lib/types";
 import type { KeyboardEvent } from "react";
 import CompanyMark from "./CompanyMark";
