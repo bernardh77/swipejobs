@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import JobDetailsPanel from "@/components/jobs/JobDetailsPanel";
@@ -37,6 +37,13 @@ export default function MatchDetailsPage({
     );
   }, [job, visibleJobs]);
 
+  const fallbackNextJobId = useRef<string | null>(null);
+  useEffect(() => {
+    if (nextJobId) {
+      fallbackNextJobId.current = nextJobId;
+    }
+  }, [nextJobId]);
+
   useEffect(() => {
     const media = window.matchMedia("(min-width: 900px)");
     const update = () => setIsDesktop(media.matches);
@@ -52,12 +59,18 @@ export default function MatchDetailsPage({
     if (!job && pendingActions[params.jobId]) {
       return;
     }
-    if (!job && visibleJobs.length > 0) {
-      router.replace(`/matches/${visibleJobs[0].id}`);
-    } else if (!job && visibleJobs.length === 0) {
-      router.replace("/matches");
+    if (!job) {
+      if (!isDesktop) {
+        router.replace("/matches");
+      } else if (fallbackNextJobId.current && visibleJobs.some(j => j.id === fallbackNextJobId.current)) {
+        router.replace(`/matches/${fallbackNextJobId.current}`);
+      } else if (visibleJobs.length > 0) {
+        router.replace(`/matches/${visibleJobs[0].id}`);
+      } else {
+        router.replace("/matches");
+      }
     }
-  }, [isLoading, job, pendingActions, params.jobId, router, visibleJobs]);
+  }, [isLoading, job, pendingActions, params.jobId, router, visibleJobs, isDesktop]);
 
   if (isLoading) {
     return <div className={`${styles.detailSkeleton} skeleton`} />;
@@ -85,13 +98,6 @@ export default function MatchDetailsPage({
         pendingDecision={pendingDecision}
         onAccept={() => {
           scheduleDecision(job.id, "accepted");
-          if (!isDesktop) {
-            router.replace("/matches");
-          } else if (nextJobId) {
-            router.replace(`/matches/${nextJobId}`);
-          } else {
-            router.replace("/matches");
-          }
         }}
         onReject={() => {
           scheduleDecision(job.id, "rejected");
